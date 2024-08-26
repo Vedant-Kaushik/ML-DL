@@ -165,7 +165,12 @@ bar_width = 0.8
 bar_positions = range(len(final_data[p]))
 
 # Plotting the bars
-ax.bar(final_data[p], final_data['SalePrice'], color='blue', edgecolor='black')
+ax.scatter(final_data[p], final_data['SalePrice'], color='blue', edgecolor='black')
+best_model = np.polyfit(final_data[p], final_data['SalePrice'], deg=60) 
+predicted_line = np.polyval(best_model, final_data[p])
+
+# Plotting the best-fit line
+plt.plot(final_data[p], predicted_line, color='red', label='Best-Fit Line')
 
 # Setting labels and title
 ax.set_xlabel(p, fontsize=14)
